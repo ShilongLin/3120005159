@@ -1,44 +1,77 @@
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
 
 public class compareText {
+    /*
+    * 依次为：
+    * - 原文绝对地址
+    * - 对比文地址
+    * - 原文
+    * - 对比文
+    *
+    * */
     private static String oriTextURL;
     private static String comTextURL;
     private static String oriText;
     private static String comText;
-    public compareText() throws IOException {
-//        this.oriTextURL=oriTextURL;
-//        this.comTextURL=comTextURL;
-//        Scanner scanner=new Scanner(System.in);
-//        BufferedReader brin=new BufferedReader(new FileReader(oriTextURL));
-//        oriText=brin.readLine();
-//        System.out.println(oriText);
+
+    private static File comResult;
+
+    /*
+    * 构造方法
+    * */
+    public compareText() {
+        comResult=new File("src/data/ans.txt");
+
+
     }
 
-    class UrlException extends RuntimeException{
+    /*
+    * 查重率方法
+    * */
+    public float getRepetitionRate(){
+        // 构建两个可改变的数组
+        String oriCharArray=oriText;
+        String comCharArray=comText;
 
-        public UrlException(String message){
-            super(message);
+        // repeatCahrNum为重复字符的个数
+        int repeatCharNum=0;
+        for(int i=0;i<comCharArray.length();i++){
+            int j;
+            for(j=0;j<oriCharArray.length();j++){
+                if(comCharArray.charAt(i)==oriCharArray.charAt(j)){
+                    repeatCharNum++;
+                    oriCharArray=removeCharAt(oriCharArray,j);
+                    break;
+                }
+            }
         }
 
+        return (float) repeatCharNum/(float) oriText.length();
     }
 
+    /*
+    * 删除字符串中的某个位置字符
+    * */
+    public static String removeCharAt(String s,int pos){
+        return s.substring(0,pos)+s.substring(pos+1);
+    }
+
+    /*
+    * Set方法和Get方法
+    * */
     public static void setOriTextURL(String oriTextURL) {
         try {
             BufferedReader brin=new BufferedReader(new FileReader(oriTextURL));
             compareText.oriTextURL=oriTextURL;
             String temp;
-            String sumText="";
+            StringBuilder sumText= new StringBuilder();
             temp=brin.readLine();
             while (temp!=null){
-                sumText+=temp+'\n';
+                sumText.append(temp).append('\n');
                 temp=brin.readLine();
             }
-            setOriText(sumText);
+            setOriText(sumText.toString());
             brin.close();
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null,"您填入的绝对地址不正确，请重新输入！","错误",JOptionPane.WARNING_MESSAGE);
@@ -51,16 +84,16 @@ public class compareText {
 
     public static void setComTextURL(String comTextURL) {
         try {
-            BufferedReader brin=new BufferedReader(new FileReader(oriTextURL));
+            BufferedReader brin=new BufferedReader(new FileReader(comTextURL));
             compareText.comTextURL=comTextURL;
             String temp;
-            String sumText="";
+            StringBuilder sumText= new StringBuilder();
             temp=brin.readLine();
             while (temp!=null){
-                sumText+=temp+'\n';
+                sumText.append(temp).append('\n');
                 temp=brin.readLine();
             }
-            setComText(sumText);
+            setComText(sumText.toString());
             brin.close();
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null,"您填入的绝对地址不正确，请重新输入！","错误",JOptionPane.WARNING_MESSAGE);
@@ -79,19 +112,15 @@ public class compareText {
         compareText.comText = comText;
     }
 
-    public static String getOriTextURL() {
-        return oriTextURL;
-    }
-
-    public static String getComTextURL() {
-        return comTextURL;
-    }
-
     public static String getOriText() {
         return oriText;
     }
 
     public static String getComText() {
         return comText;
+    }
+
+    public static void setComResult(String ansURL) {
+        compareText.comResult = new File(ansURL);
     }
 }

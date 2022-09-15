@@ -24,6 +24,11 @@ public class maininterface {
 
 
     public void startInterface() throws IOException {
+        // 配置组件的属性
+        textArea1.setEditable(false);
+        textArea2.setEditable(false);
+        textArea3.setEditable(false);
+
         JFrame jFrame=new JFrame("maininterface");
         jFrame.setContentPane(this.mainbox);
         jFrame.setVisible(true);
@@ -33,6 +38,10 @@ public class maininterface {
         // 引入compareText类
         compareText comTool=new compareText();
 
+
+        /*
+        * 按钮的属性设置
+        * */
         this.oriConfig.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,6 +60,13 @@ public class maininterface {
                     comTool.setComTextURL(comURLFlag);
                 }
                 textArea2.setText(comTool.getComText());
+            }
+        });
+
+        this.compareBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("查重率为"+comTool.getRepetitionRate());
             }
         });
     }
