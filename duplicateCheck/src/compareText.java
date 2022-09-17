@@ -29,6 +29,7 @@ public class compareText {
     /*
     * 查重率方法
     * */
+    @SuppressWarnings("StringConcatenationInLoop")
     public float getRepetitionRate(){
         // 构建两个可改变的数组
         String oriCharArray=oriText;
@@ -41,7 +42,7 @@ public class compareText {
             for(j=0;j<oriCharArray.length();j++){
                 if(comCharArray.charAt(i)==oriCharArray.charAt(j)){
                     repeatCharNum++;
-                    this.repeatStrings+=comCharArray.charAt(i);
+                    repeatStrings+=comCharArray.charAt(i);
                     oriCharArray=removeCharAt(oriCharArray,j);
                     break;
                 }
@@ -107,7 +108,7 @@ public class compareText {
             String xx=repeatStrings;
             comResultTxt="=====originalText=====\n"+oriText+"=====CompareTxt=====\n"+comText+"=====COMPARE_RESULT=====\n"+"重复率为："+getRepetitionRate();
             bwout.write(comResultTxt);
-            bwout.append("\n重复的内容："+xx);
+            bwout.append("\n重复的内容：").append(xx);
             bwout.flush();
             bwout.close();
         } catch (IOException e) {
