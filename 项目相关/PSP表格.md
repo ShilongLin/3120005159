@@ -12,12 +12,12 @@
 | Design Review                         | 设计复审                        | 10               | 10               |
 | Coding Standard                       | 代码规范                        | 10               | 20               |
 | Design                                | 具体设计                        | 30               | 10               |
-| Coding                                | 具体编码                        | 360              |                  |
-| Code Review                           | 代码复审                        | 30               |                  |
-| Test                                  | 测试                            | 20               |                  |
-| Reporting                             | 报告                            | 60               |                  |
-| Test Report                           | 测试报告                        | 30               |                  |
-| Size Measurement                      | 计算工作量                      | 10               |                  |
-| Postmortem & Process Improvement Plan | 事后总结，并提出过程改进计划    | 30               |                  |
-|                                       | 合计                            |                  |                  |
+| Coding                                | 具体编码                        | 360              | 240              |
+| Code Review                           | 代码复审                        | 30               | 20               |
+| Test                                  | 测试                            | 20               | 20               |
+| Reporting                             | 报告                            | 60               | 60               |
+| Test Report                           | 测试报告                        | 30               | 30               |
+| Size Measurement                      | 计算工作量                      | 10               | 10               |
+| Postmortem & Process Improvement Plan | 事后总结，并提出过程改进计划    | 30               | 20               |
+|                                       | 合计                            | 690              | 390              |
 

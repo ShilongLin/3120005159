@@ -3,39 +3,26 @@ import java.io.*;
 
 public class compareText {
     /*
-     * 依次为：
-     * - 原文绝对地址
-     * - 对比文地址
-     * - 原文
-     * - 对比文
-     *
+     * =========================================
+     * data store
      * */
     private static String oriText;
     private static String comText;
-
     private static File comResult;
     private static String comResultTxt;
     private static String repeatStrings="";
 
     /*
-    * 构造方法
-    * */
-    public compareText() {
-        comResult=new File("src/data/ans.txt");
-
-
-    }
-
-    /*
-    * 查重率方法
+    * =========================================
+    * Repetition rate method
     * */
     @SuppressWarnings("StringConcatenationInLoop")
     public float getRepetitionRate(){
-        // 构建两个可改变的数组
+        // temporary data for originail text and compare text
         String oriCharArray=oriText;
         String comCharArray=comText;
 
-        // repeatCahrNum为重复字符的个数
+        // temporary data for repeat char number
         int repeatCharNum=0;
         for(int i=0;i<comCharArray.length();i++){
             int j;
@@ -48,19 +35,20 @@ public class compareText {
                 }
             }
         }
-
         return (float) repeatCharNum/(float) oriText.length();
     }
 
     /*
-    * 删除字符串中的某个位置字符
+    * ==============================================
+    * delete appoint position char in String
     * */
     public static String removeCharAt(String s,int pos){
         return s.substring(0,pos)+s.substring(pos+1);
     }
 
     /*
-    * Set方法和Get方法
+    * ==============================================
+    * set originail text URL and get originail text
     * */
     public static void setOriTextURL(String oriTextURL) {
         try {
@@ -82,6 +70,10 @@ public class compareText {
         }
     }
 
+    /*
+     * ==============================================
+     * set compare text URL and get compare text
+     * */
     public static void setComTextURL(String comTextURL) {
         try {
             BufferedReader brin=new BufferedReader(new FileReader(comTextURL));
@@ -102,6 +94,10 @@ public class compareText {
         }
     }
 
+    /*
+     * ==============================================
+     * get result to file
+     * */
     public void getResultToTxt(){
         try {
             BufferedWriter bwout=new BufferedWriter(new FileWriter(comResult));
@@ -116,6 +112,28 @@ public class compareText {
         }
     }
 
+    /*
+     * ==============================================
+     * get compare result file
+     * */
+    public static void setComResult(String ansURL) {
+        try {
+            BufferedReader brin=new BufferedReader(new FileReader(ansURL));
+            comResult=new File(ansURL);
+
+            brin.close();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null,"您填入的绝对地址不正确，请重新输入！","错误",JOptionPane.WARNING_MESSAGE);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+    /*
+     * ==============================================
+     * Setting and Getting method
+     * */
     public static void setOriText(String oriText) {
         compareText.oriText = oriText;
     }
@@ -140,18 +158,5 @@ public class compareText {
         return repeatStrings;
     }
 
-    public static void setComResult(String ansURL) {
-        try {
-            BufferedReader brin=new BufferedReader(new FileReader(ansURL));
-            comResult=new File(ansURL);
 
-            brin.close();
-        } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null,"您填入的绝对地址不正确，请重新输入！","错误",JOptionPane.WARNING_MESSAGE);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
 }

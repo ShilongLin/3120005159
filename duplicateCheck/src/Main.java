@@ -2,15 +2,20 @@ import java.text.DecimalFormat;
 
 public class Main {
     /*
-    * 命令行版
+    * =========================================
+    * command line
     * */
     public static void main(String[] args) {
+        // get parameter
         compareText comTool=new compareText();
         compareText.setOriTextURL(args[0]);
         compareText.setComTextURL(args[1]);
         compareText.setComResult(args[2]);
-        // 保留两位小数
+
+        // Keep two decimal places
         DecimalFormat df=new DecimalFormat("#0.00");
+
+        // print result
         System.out.println("成功对比文章，结果已打印在答案文件中");
         System.out.println("=====原文=====");
         System.out.println(compareText.getOriText());

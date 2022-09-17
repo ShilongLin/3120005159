@@ -4,6 +4,11 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class maininterface {
+
+    /*
+    * ============================================
+    * Declare components
+    * */
     private JPanel mainbox;
     private JPanel originalBox;
     private JTextField oriTextURL;
@@ -25,9 +30,12 @@ public class maininterface {
     private JTextField resTextURL;
     private JButton resConfig;
 
-
+    /*
+    * ================================
+    * Construction method
+    * */
     public void startInterface() throws IOException {
-        // 配置组件的属性
+        // Configuration Properties
         textArea1.setEditable(false);
         textArea2.setEditable(false);
         textArea3.setEditable(false);
@@ -38,12 +46,12 @@ public class maininterface {
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(680,680);
 
-        // 引入compareText类
+        // get CLASS->compareText
         compareText comTool=new compareText();
 
 
         /*
-        * 按钮的属性设置
+        * configure button
         * */
         this.oriConfig.addActionListener(new ActionListener() {
             @Override
