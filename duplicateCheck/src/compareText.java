@@ -16,6 +16,7 @@ public class compareText {
     private static String comText;
 
     private static File comResult;
+    private static String comResultTxt;
 
     /*
     * 构造方法
@@ -104,6 +105,20 @@ public class compareText {
         }
     }
 
+    public void getResultToTxt(){
+        try {
+            BufferedWriter bwout=new BufferedWriter(new FileWriter(comResult));
+            comResultTxt="=====originalText=====\n"+oriText+"=====CompareTxt=====\n"+comText+"=====COMPARE_RESULT=====\n"+"重复率为："+getRepetitionRate();
+            bwout.write(comResultTxt);
+            bwout.flush();
+            bwout.close();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null,"您填入的绝对地址不正确，请重新输入！","错误",JOptionPane.WARNING_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,"您填入的绝对地址不正确，请重新输入！","错误",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
     public static void setOriText(String oriText) {
         compareText.oriText = oriText;
     }
@@ -120,7 +135,22 @@ public class compareText {
         return comText;
     }
 
+    public static String getComResultTxt() {
+        return comResultTxt;
+    }
+
     public static void setComResult(String ansURL) {
-        compareText.comResult = new File(ansURL);
+        try {
+            BufferedReader brin=new BufferedReader(new FileReader(ansURL));
+            comResult=new File(ansURL);
+
+            brin.close();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null,"您填入的绝对地址不正确，请重新输入！","错误",JOptionPane.WARNING_MESSAGE);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }

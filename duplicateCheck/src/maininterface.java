@@ -21,6 +21,9 @@ public class maininterface {
     private JPanel showResult;
     private JButton compareBtn;
     private JTextArea textArea3;
+    private JPanel resultBox;
+    private JTextField resTextURL;
+    private JButton resConfig;
 
 
     public void startInterface() throws IOException {
@@ -63,10 +66,21 @@ public class maininterface {
             }
         });
 
+        this.resConfig.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(JOptionPane.showConfirmDialog(jFrame,"答案文章绝对地址是否为："+resTextURL.getText(),"请确认",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    comTool.setComResult(resTextURL.getText());
+                }
+            }
+        });
+
         this.compareBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                comTool.getResultToTxt();
                 System.out.println("查重率为"+comTool.getRepetitionRate());
+                textArea3.setText(comTool.getComResultTxt());
             }
         });
     }
