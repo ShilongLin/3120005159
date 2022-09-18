@@ -87,7 +87,6 @@ public class maininterface {
             @Override
             public void actionPerformed(ActionEvent e) {
                 comTool.getResultToTxt();
-                System.out.println("查重率为"+comTool.getRepetitionRate());
                 textArea3.setText(comTool.getComResultTxt());
             }
         });

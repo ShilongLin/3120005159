@@ -101,10 +101,10 @@ public class compareText {
     public void getResultToTxt(){
         try {
             BufferedWriter bwout=new BufferedWriter(new FileWriter(comResult));
-            String xx=repeatStrings;
-            comResultTxt="=====originalText=====\n"+oriText+"=====CompareTxt=====\n"+comText+"=====COMPARE_RESULT=====\n"+"重复率为："+getRepetitionRate();
+            float yy=this.getRepetitionRate();
+            String xx= getRepeatStrings();
+            comResultTxt="=====originalText=====\n"+oriText+"=====CompareTxt=====\n"+comText+"=====COMPARE_RESULT=====\n"+"重复率为："+yy+"\n重复字符："+xx;
             bwout.write(comResultTxt);
-            bwout.append("\n重复的内容：").append(xx);
             bwout.flush();
             bwout.close();
         } catch (IOException e) {
