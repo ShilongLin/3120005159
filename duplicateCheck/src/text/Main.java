@@ -1,3 +1,7 @@
+package text;
+
+import com.comparator.compareText;
+
 import java.text.DecimalFormat;
 
 public class Main {
@@ -23,6 +27,7 @@ public class Main {
         System.out.println(compareText.getComText());
         System.out.println("=====对比结果=====");
         System.out.println("重复率："+df.format(comTool.getRepetitionRate()));
+        System.out.println("相似度（向量余弦）："+compareText.getSimilarity()*100+"%");
         System.out.println("重复内容："+ compareText.getRepeatStrings());
         comTool.getResultToTxt();
     }

@@ -1,3 +1,5 @@
+package text;
+
 import java.io.IOException;
 
 public class duplicateCheck {

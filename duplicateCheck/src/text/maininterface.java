@@ -1,3 +1,6 @@
+package text;
+import com.comparator.compareText;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +49,7 @@ public class maininterface {
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(680,680);
 
-        // get CLASS->compareText
+        // get CLASS->com.comparator.compareText
         compareText comTool=new compareText();
 
 

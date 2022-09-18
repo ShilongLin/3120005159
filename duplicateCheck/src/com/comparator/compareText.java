@@ -1,3 +1,5 @@
+package com.comparator;
+
 import javax.swing.*;
 import java.io.*;
 
@@ -11,6 +13,7 @@ public class compareText {
     private static File comResult;
     private static String comResultTxt;
     private static String repeatStrings="";
+    private static Double Similarity;
 
     /*
     * =========================================
@@ -21,6 +24,9 @@ public class compareText {
         // temporary data for originail text and compare text
         String oriCharArray=oriText;
         String comCharArray=comText;
+
+        // get Similarity
+        Similarity=Comparator.getConsineSimilarity(oriText,comText);
 
         // temporary data for repeat char number
         int repeatCharNum=0;
@@ -103,7 +109,7 @@ public class compareText {
             BufferedWriter bwout=new BufferedWriter(new FileWriter(comResult));
             float yy=this.getRepetitionRate();
             String xx= getRepeatStrings();
-            comResultTxt="=====originalText=====\n"+oriText+"=====CompareTxt=====\n"+comText+"=====COMPARE_RESULT=====\n"+"重复率为："+yy+"\n重复字符："+xx;
+            comResultTxt="=====originalText=====\n"+oriText+"=====CompareTxt=====\n"+comText+"=====COMPARE_RESULT=====\n"+"重复率为："+yy+"\n相似度（向量余弦）："+compareText.getSimilarity()*100+"%"+"\n重复字符："+xx;
             bwout.write(comResultTxt);
             bwout.flush();
             bwout.close();
@@ -158,5 +164,7 @@ public class compareText {
         return repeatStrings;
     }
 
-
+    public static double getSimilarity() {
+        return Similarity;
+    }
 }
