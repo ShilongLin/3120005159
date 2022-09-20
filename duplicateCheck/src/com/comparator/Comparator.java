@@ -22,8 +22,7 @@ public class Comparator {
         Comparator.convertWordList2Vector(wordListA,wordListB,vectorA,vectorB);
 
         // 计算向量夹角的余弦值
-        double cosine=Double.parseDouble(String.format("%.4f",Comparator.countCosine(vectorA,vectorB)));
-        return cosine;
+        return Double.parseDouble(String.format("%.4f",Comparator.countCosine(vectorA,vectorB)));
     }
 
     /*
@@ -114,12 +113,7 @@ public class Comparator {
         return Math.sqrt(result);
     }
 
-    /**
-     * @Description 计算向量 A 和向量 B 的夹角余弦值
-     * @param vectorA   : 词向量 A
-     * @param vectorB   : 词向量 B
-     * @return
-     */
+
     public static double countCosine(List<Double> vectorA,List<Double> vectorB){
         // 分别计算向量的平方和
         double sqrtA = countSquareSum(vectorA);
@@ -133,11 +127,4 @@ public class Comparator {
 
         return dotProductResult/(sqrtA*sqrtB);
     }
-
-//    public static void main(String[] args) {
-//        List<String> xxList=extractWordFromText("Baby,baby,是不是爱给的不够你要怀疑！");
-//        for(String x:xxList){
-//            System.out.print(x+"+");
-//        }
-//    }
 }

@@ -37,7 +37,7 @@ public class maininterface {
     * ================================
     * Construction method
     * */
-    public void startInterface() throws IOException {
+    public void startInterface() {
         // Configuration Properties
         textArea1.setEditable(false);
         textArea2.setEditable(false);
@@ -66,15 +66,12 @@ public class maininterface {
                 textArea1.setText(comTool.getOriText());
             }
         });
-        this.comConfig.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String comURLFlag=comTextURL.getText();
-                if(JOptionPane.showConfirmDialog(jFrame,"对比文章绝对地址是否为："+comURLFlag,"请确认",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-                    comTool.setComTextURL(comURLFlag);
-                }
-                textArea2.setText(comTool.getComText());
+        this.comConfig.addActionListener(e -> {
+            String comURLFlag=comTextURL.getText();
+            if(JOptionPane.showConfirmDialog(jFrame,"对比文章绝对地址是否为："+comURLFlag,"请确认",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                comTool.setComTextURL(comURLFlag);
             }
+            textArea2.setText(comTool.getComText());
         });
 
         this.resConfig.addActionListener(new ActionListener() {
